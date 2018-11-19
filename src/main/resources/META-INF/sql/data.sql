@@ -1,0 +1,15 @@
+INSERT INTO users (name, lastName, pesel, recommendation, nextVisit) VALUES ('Jan', 'Kowalski','89120501816', 'jedz mniej', '2019-01-30');
+INSERT INTO users (name, lastName, pesel, recommendation, nextVisit) VALUES ('Roman', 'Nowak','91030501317', 'weź suplementy', '2018-12-30');
+INSERT INTO users (name, lastName, pesel, recommendation, nextVisit) VALUES ('Katarzyna', 'Dabrowska','90060501227', 'uprawiaj sport', '2018-11-20');
+INSERT INTO users (name, lastName, userName, password) VALUES ('admin', 'admin','aaa', '$2a$10$XAazodWwcXW/.IQwbYcm0e9Wa4Qk/uzEMGL8EfKevwR8BEnHI/OZe');
+INSERT INTO diseases (name) VALUES ('Borelioza');
+INSERT INTO diseases (name) VALUES ('SM');
+INSERT INTO diseases (name) VALUES ('Alergia');
+INSERT INTO diseases (name) VALUES ('Nietolerancja');
+INSERT INTO suplements (name, suplementDescription) VALUES ('aspiryna', 'przeciwgoraczkow');
+INSERT INTO suplements (name, suplementDescription) VALUES ('witamina C', 'przeciwzapalnie');
+INSERT INTO suplements (name, suplementDescription) VALUES ('witamina D', 'odpornościowo');
+INSERT INTO suplements (name, suplementDescription) VALUES ('zeolit', 'oczyszczanie');
+INSERT INTO therapists (name, specialization) VALUES ('Robert', 'osteopata');
+INSERT INTO therapists (name, specialization) VALUES ('Maciej', 'masażysta');
+INSERT INTO therapists (name, specialization) VALUES ('Ela', 'naturopata');
