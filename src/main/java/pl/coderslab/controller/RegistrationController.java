@@ -49,6 +49,7 @@ public class RegistrationController {
         user.setHashedPassword(registrationDto.getPassword());
         user.setName(registrationDto.getName());
         user.setLastName(registrationDto.getLastName());
+        user.setPesel(registrationDto.getPesel());
 
         userService.save(user);
 

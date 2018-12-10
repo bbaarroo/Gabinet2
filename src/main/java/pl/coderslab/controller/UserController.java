@@ -167,15 +167,19 @@ public class UserController {
 
         User user = userService.findById(id);
 
+        if (user.getNextVisit() != null) {
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
-        try {
-            String nextVisit = user.getNextVisitString();
-            user.setNextVisit(formatter.parse(nextVisit));
-        } catch (ParseException e) {
-            e.printStackTrace();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+            try {
+                String nextVisit = user.getNextVisitString();
+                user.setNextVisit(formatter.parse(nextVisit));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
+
         model.addAttribute("user", user);
+
         return "form/AddUser";
     }
 

@@ -33,6 +33,9 @@
     Nazwisko: <form:input path="lastName"/><br>
     <form:errors path="lastName"/><br>
 
+    Pesel: <form:input path="pesel"/><br>
+    <form:errors path="pesel"/><br>
+
 
     Login: <form:input path="login"/><br>
     <form:errors path="login"/><br>

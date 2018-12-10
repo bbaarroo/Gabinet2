@@ -1,12 +1,15 @@
 package pl.coderslab.dto;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.pl.PESEL;
+
+import javax.validation.constraints.Size;
 
 public class RegistrationDto {
-    @NotEmpty
-    private String name;
 
-    @NotEmpty
+    @Size(min = 3, max = 30)
+    private String name;
+    @Size(min = 3, max = 30)
     private String lastName;
 
     @NotEmpty
@@ -17,6 +20,9 @@ public class RegistrationDto {
 
     @NotEmpty
     private String passwordRepeat;
+
+    @PESEL
+    private String pesel;
 
 
     //getter setter
@@ -61,5 +67,11 @@ public class RegistrationDto {
         this.lastName = lastName;
     }
 
+    public String getPesel() {
+        return pesel;
+    }
 
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
+    }
 }
