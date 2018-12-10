@@ -1,5 +1,6 @@
 package pl.coderslab.model;
 
+import org.hibernate.validator.constraints.pl.PESEL;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class User {
 
     private String lastName;
 
+    @PESEL
     private String pesel;
 
     @ManyToMany(fetch = FetchType.EAGER)

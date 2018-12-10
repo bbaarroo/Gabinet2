@@ -31,7 +31,7 @@ public class UserDto {
     private String nextVisit;
 
     private String comments;
-    @Size(min = 9, max = 12)
+
     private String phnoneNumber;
 
 
