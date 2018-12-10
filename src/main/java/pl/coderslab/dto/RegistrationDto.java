@@ -1,10 +1,6 @@
 package pl.coderslab.dto;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.NumberFormat;
-
-import javax.validation.constraints.Size;
 
 public class RegistrationDto {
     @NotEmpty
@@ -16,13 +12,11 @@ public class RegistrationDto {
     @NotEmpty
     private String login;
 
-
     @NotEmpty
     private String password;
 
     @NotEmpty
     private String passwordRepeat;
-
 
 
     //getter setter
@@ -34,7 +28,6 @@ public class RegistrationDto {
     public void setLogin(String login) {
         this.login = login;
     }
-
 
     public String getPassword() {
         return password;

@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
@@ -12,6 +14,7 @@ public class Disease {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)

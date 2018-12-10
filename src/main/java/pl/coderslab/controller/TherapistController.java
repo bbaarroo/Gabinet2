@@ -3,6 +3,7 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,8 @@ import pl.coderslab.dto.SuplementDto;
 import pl.coderslab.dto.TherapistDto;
 import pl.coderslab.model.Suplement;
 import pl.coderslab.model.Therapist;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/app/therapists")
@@ -46,12 +49,11 @@ public class TherapistController {
 
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute TherapistDto therapistDto ) {
-//    public String saveBook(@Valid UserDto userDto, BindingResult result) {
-//
-//        if (result.hasErrors()) {
-//            return "form/AddUser";
-//        }
+    public String save(@Valid TherapistDto therapistDto, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "form/AddTherapist";
+        }
 
         if (therapistDto.getId() == null) {
 

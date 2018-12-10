@@ -3,15 +3,15 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.Service.DiseaseService;
 import pl.coderslab.dto.DiseaseDto;
-import pl.coderslab.dto.TherapistDto;
 import pl.coderslab.model.Disease;
-import pl.coderslab.model.Therapist;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/app/diseases")
@@ -46,14 +46,11 @@ public class DiseaseController {
 
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute DiseaseDto diseaseDto ) {
-//    public String saveBook(@Valid UserDto userDto, BindingResult result) {
-//
-//        if (result.hasErrors()) {
-//            return "form/AddUser";
-//        }
+    public String save(@Valid DiseaseDto diseaseDto, BindingResult result) {
 
-
+        if (result.hasErrors()) {
+            return "form/AddDisease";
+        }
 
         if (diseaseDto.getId() == null) {
             Disease disease = new Disease();
@@ -69,12 +66,7 @@ public class DiseaseController {
 
             diseaseService.save(disease);
         }
-
-
-
-
         return "redirect:showall";
-
     }
 
 
@@ -83,7 +75,7 @@ public class DiseaseController {
 
         Disease disease = diseaseService.findById(id);
 
-        model.addAttribute("disease",disease);
+        model.addAttribute("disease", disease);
         return "form/AddDisease";
     }
 }

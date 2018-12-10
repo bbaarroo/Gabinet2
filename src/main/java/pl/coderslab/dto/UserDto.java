@@ -1,26 +1,20 @@
 package pl.coderslab.dto;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.pl.PESEL;
-import org.springframework.format.annotation.NumberFormat;
 import pl.coderslab.model.Disease;
 import pl.coderslab.model.Suplement;
 import pl.coderslab.model.Therapist;
 
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.Set;
 
 public class UserDto {
 
 
     private Long id;
-//    @Min(3)
+    @Size(min = 3, max = 30)
     private String name;
-//    @Min(3)
+    @Size(min = 3, max = 30)
     private String lastName;
 
     @PESEL
@@ -37,10 +31,8 @@ public class UserDto {
     private String nextVisit;
 
     private String comments;
-
+    @Size(min = 9, max = 12)
     private String phnoneNumber;
-
-
 
 
     // gettery i settery

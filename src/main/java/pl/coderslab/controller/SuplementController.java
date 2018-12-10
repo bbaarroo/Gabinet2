@@ -3,18 +3,17 @@ package pl.coderslab.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.Service.SuplementService;
 import pl.coderslab.dto.SuplementDto;
-import pl.coderslab.dto.UserDto;
 import pl.coderslab.model.Suplement;
-import pl.coderslab.model.User;
 import pl.coderslab.utils.CsvUtils;
 
-
+import javax.validation.Valid;
 import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -43,7 +42,6 @@ public class SuplementController {
     }
 
 
-
     @RequestMapping(path = "/add", method = RequestMethod.GET)
     public String addUser(Model model) {
 
@@ -53,12 +51,11 @@ public class SuplementController {
 
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute SuplementDto suplementDto) {
-//    public String saveBook(@Valid UserDto userDto, BindingResult result) {
-//
-//        if (result.hasErrors()) {
-//            return "form/AddUser";
-//        }
+    public String saveBook(@Valid SuplementDto suplementDto, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "form/AddSuplement";
+        }
 
         if (suplementDto.getId() == null) {
             Suplement suplement = new Suplement();
@@ -77,9 +74,7 @@ public class SuplementController {
             suplementService.save(suplement);
         }
 
-
         return "redirect:../suplements/showall";
-
     }
 
 
@@ -88,13 +83,13 @@ public class SuplementController {
 
         Suplement suplement = suplementService.findById(id);
 
-        model.addAttribute("suplement",suplement);
+        model.addAttribute("suplement", suplement);
         return "form/AddSuplement";
     }
 
 
     @RequestMapping(path = "/readCsv")
-            public String readSuplements(Model model) {
+    public String readSuplements(Model model) {
 
 
         File initialFile = new File("/home/bbi/Pulpit/maven/Gabinet2/src/main/webapp/static/Suplementy.csv");
@@ -108,15 +103,13 @@ public class SuplementController {
             List<Suplement> suplements = CsvUtils.read(Suplement.class, targetStream, ';');
 
 
-            for (Suplement s: suplements) {
+            for (Suplement s : suplements) {
                 suplementService.save(s);
             }
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         return "redirect:../suplements/showall";
     }

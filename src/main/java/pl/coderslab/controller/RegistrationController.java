@@ -44,8 +44,6 @@ public class RegistrationController {
             return "registration/registrationForm";
         }
 
-
-
         User user = new User();
         user.setUserName(registrationDto.getLogin());
         user.setHashedPassword(registrationDto.getPassword());

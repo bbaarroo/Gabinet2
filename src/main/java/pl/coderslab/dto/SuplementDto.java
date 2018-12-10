@@ -1,16 +1,15 @@
 package pl.coderslab.dto;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import pl.coderslab.model.User;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import java.util.Set;
 
 public class SuplementDto {
 
-
-
     private Long id;
+
+    @NotEmpty
     private String name;
 
     private String suplementDescription;

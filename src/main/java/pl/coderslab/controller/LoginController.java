@@ -35,9 +35,9 @@ public class LoginController {
     @PostMapping
     public String postLogin(HttpServletRequest request, @Valid LoginDto loginDto, BindingResult bindingResult) {
 
-//        if (bindingResult.hasErrors()) {
-//            return "login/loginForm";
-//        }
+        if (bindingResult.hasErrors()) {
+            return "login/loginForm";
+        }
 
         User user = userRepository.findByUserName(loginDto.getLogin());
 

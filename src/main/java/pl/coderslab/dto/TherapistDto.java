@@ -4,7 +4,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class TherapistDto {
 
-
     private Long id;
     @NotEmpty
     private String name;

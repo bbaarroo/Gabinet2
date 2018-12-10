@@ -1,6 +1,9 @@
 package pl.coderslab.controller;
 
-import com.itextpdf.text.*;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -8,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import pl.coderslab.Service.DiseaseService;
 import pl.coderslab.Service.SuplementService;
 import pl.coderslab.Service.TherapistService;
@@ -18,7 +24,6 @@ import pl.coderslab.model.Disease;
 import pl.coderslab.model.Suplement;
 import pl.coderslab.model.Therapist;
 import pl.coderslab.model.User;
-
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -63,12 +68,11 @@ public class UserController {
 
 
     @RequestMapping(path = "/add", method = RequestMethod.POST)
-    public String save(@ModelAttribute UserDto userDto) {
-//    public String saveBook(@Valid UserDto userDto, BindingResult result) {
-//
-//        if (result.hasErrors()) {
-//            return "form/AddUser";
-//        }
+    public String save(@Valid UserDto userDto, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "form/AddUser";
+        }
 
         if (userDto.getId() == null) {
             User user = new User();
@@ -141,7 +145,6 @@ public class UserController {
 
         List<Suplement> suplements = suplementService.findSuplementByUserId(id);
 
-
         User user = userService.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("suplements", suplements);
@@ -175,9 +178,6 @@ public class UserController {
         model.addAttribute("user", user);
         return "form/AddUser";
     }
-
-
-
 
 
     @RequestMapping(path = "/toPdf/{id}", method = RequestMethod.GET)
@@ -245,7 +245,6 @@ public class UserController {
         table.addCell(userService.findById(id).getSuplements().toString());
         table.addCell(userService.findById(id).getTherapistList().toString());
         table.addCell(userService.findById(id).getRecommendation());
-
 
 
     }

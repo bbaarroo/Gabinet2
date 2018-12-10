@@ -1,14 +1,9 @@
 package pl.coderslab.model;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.hibernate.validator.constraints.pl.PESEL;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -21,17 +16,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String name;
-
 
     private String lastName;
 
-//    @PESEL
-//    @Column(unique=true)
     private String pesel;
 
-    @ManyToMany(fetch=FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Disease> diseaseList;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -52,19 +43,9 @@ public class User {
     // atrybuty filtr
 
 
-
     private String userName;
 
-
     private String password;
-
-
-
-    // jakby co to jako duzy Boolean
-//    private boolean enabled;
-
-
-
 
 
     // konstruktor
@@ -79,7 +60,6 @@ public class User {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.format(nextVisit);
     }
-
 
 
     // gettery i settery

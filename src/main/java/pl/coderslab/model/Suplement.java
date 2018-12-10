@@ -1,6 +1,7 @@
 package pl.coderslab.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
@@ -13,11 +14,10 @@ public class Suplement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
 
     private String suplementDescription;
-
-
 
 
     @ManyToMany(fetch = FetchType.EAGER,mappedBy = "suplements")
